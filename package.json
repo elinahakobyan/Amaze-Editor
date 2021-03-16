@@ -32,5 +32,9 @@
     "webpack": "^1.13.3",
     "webpack-dev-server": "^1.16.2",
     "webpack-fail-plugin": "^1.0.5"
+  },
+  "dependencies": {
+    "emitter": "0.0.5",
+    "eventemitter3": "^4.0.7"
   }
 }
