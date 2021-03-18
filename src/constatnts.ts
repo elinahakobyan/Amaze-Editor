@@ -6,3 +6,10 @@ export const CELL_STATUS = {
   gone: "gone",
   unknow: "unknow",
 };
+
+export enum Direction {
+  north = "north",
+  east = "east",
+  south = "south",
+  west = "west",
+}

@@ -1,21 +1,25 @@
 import { lego } from "@armathai/lego";
 import { CELL_STATUS } from "../constatnts";
 import { CellViewEvent, UIViewEvent } from "../events/view";
+import { ActorView } from "./actor-view";
 
 export class CellView {
   private _view: HTMLDivElement;
   private _uuid: string;
+  private _row: number;
+  private _col: number;
   private _status: string;
+  private _actor: ActorView;
 
-  public constructor(uuid: string) {
+  public constructor(row: number, col: number, uuid: string) {
     this._uuid = uuid;
+    this._row = row;
+    this._col = col;
     this._status = CELL_STATUS.unknow;
     this._build();
     lego.event.on(UIViewEvent.gameBoardReddy, this._removeEvent, this);
 
     this._addEvent();
-
-    // lego.event.on(BoardModelEvent.cellsUpdate, this._cellModelUpdate, this);
   }
 
   public get view(): HTMLDivElement {
@@ -30,10 +34,6 @@ export class CellView {
     return this._uuid;
   }
 
-  // private _cellModelUpdate(cellModel: CellModel): void {
-  //   // cellModel ? this._buildCells() : this._destroyCells();
-  //   // console.warn(cellModel);
-  // }
   private _kayPlay(): void {
     //
   }
@@ -46,21 +46,12 @@ export class CellView {
     this.view.removeEventListener("pointerdown", this._selected);
   }
 
-  // private __buildCells(): void {
-  //   // this._cells = new GameView();
-  //   // this._view.appendChild(this._cells.view);
-  // }
-
-  // private _destroyCells(): void {
-  //   // this._view.removeChild(this._cells.view);
-  // }
-
   private _selected = (): void => {
     switch (this._status) {
       case CELL_STATUS.way:
         this._status = CELL_STATUS.actor;
-        this._view.style.backgroundColor = "red";
-        this._view.style.borderRadius = "10px";
+        this._actor = new ActorView(this._row, this._col);
+        this._view.appendChild(this._actor.view);
 
         break;
       case CELL_STATUS.actor:

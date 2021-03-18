@@ -37,7 +37,7 @@ export class UIView {
       lego.event.emit(UIViewEvent.gameBoardReddy);
     });
     this._btnBuild.addEventListener("pointerdown", () => {
-      lego.event.emit(UIViewEvent.gameConfigReddy, this._borderConfig);
+      // lego.event.emit(UIViewEvent.gameConfigReddy, this._borderConfig);
     });
   }
 

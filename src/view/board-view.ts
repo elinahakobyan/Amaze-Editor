@@ -7,7 +7,6 @@ import { CellView } from "./cell-view";
 export class BoardView {
   private _view: HTMLDivElement;
   private _cells: CellView[][] = [];
-
   public constructor() {
     this._build();
 
@@ -29,7 +28,7 @@ export class BoardView {
   private _buildCells(cells: CellModel[][]): void {
     this._cells = cells.map((row, i) =>
       cells[i].map((col, j) => {
-        const cellView = new CellView(cells[i][j].uuid);
+        const cellView = new CellView(i, j, cells[i][j].uuid);
         this._view.appendChild(cellView.view);
 
         return cellView;
