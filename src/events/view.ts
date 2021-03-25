@@ -11,3 +11,7 @@ export enum UIViewEvent {
 export enum CellViewEvent {
   cellClick = "CellViewClick",
 }
+
+export enum GameViewEvent {
+  keydown = "GameViewKeydown",
+}
